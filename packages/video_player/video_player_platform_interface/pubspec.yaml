@@ -14,11 +14,7 @@ environment:
 dependencies:
   flutter:
     sdk: flutter
-  plugin_platform_interface:
-    git:
-      ref: video_player_background_test
-      url: https://github.com/ArvidNy/packages.git
-      path: packages/plugin_platform_interface
+  plugin_platform_interface: ^2.1.7
 
 dev_dependencies:
   flutter_test:
