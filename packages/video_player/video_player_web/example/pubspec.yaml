@@ -8,7 +8,11 @@ environment:
 dependencies:
   flutter:
     sdk: flutter
-  video_player_platform_interface: ^6.3.0
+  video_player_platform_interface:
+    git:
+      ref: video_player_background_test
+      url: https://github.com/ArvidNy/packages.git
+      path: packages/video_player/video_player_platform_interface
   video_player_web:
     path: ../
   web: ^1.0.0

@@ -16,7 +16,11 @@ dependencies:
     # The example app is bundled with the plugin so we use a path dependency on
     # the parent directory to use the current plugin's version.
     path: ../
-  video_player_platform_interface: ^6.3.0
+  video_player_platform_interface:
+    git:
+      ref: video_player_background_test
+      url: https://github.com/ArvidNy/packages.git
+      path: packages/video_player/video_player_platform_interface
 
 dev_dependencies:
   flutter_test:

@@ -5,6 +5,7 @@ issue_tracker: https://github.com/flutter/flutter/issues?q=is%3Aissue+is%3Aopen+
 # NOTE: We strongly prefer non-breaking changes, even at the expense of a
 # less-clean API. See https://flutter.dev/go/platform-interface-breaking-changes
 version: 6.4.0
+publish_to: none
 
 environment:
   sdk: ^3.4.0
@@ -13,7 +14,11 @@ environment:
 dependencies:
   flutter:
     sdk: flutter
-  plugin_platform_interface: ^2.1.7
+  plugin_platform_interface:
+    git:
+      ref: video_player_background_test
+      url: https://github.com/ArvidNy/packages.git
+      path: packages/plugin_platform_interface
 
 dev_dependencies:
   flutter_test:
