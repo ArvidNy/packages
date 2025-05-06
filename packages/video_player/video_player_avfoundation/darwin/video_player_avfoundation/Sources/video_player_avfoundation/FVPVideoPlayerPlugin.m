@@ -312,6 +312,8 @@ static void upgradeAudioSessionCategory(AVAudioSessionCategory requestedCategory
 #if TARGET_OS_OSX
   // AVAudioSession doesn't exist on macOS, and audio always mixes, so just no-op.
 #else
+  NSLog(@"video_player: Mix with others - Category: %@, Options: %lu", 
+        session.category, (unsigned long)session.categoryOptions);
   if (mixWithOthers) {
     upgradeAudioSessionCategory(AVAudioSession.sharedInstance.category,
                                 AVAudioSessionCategoryOptionMixWithOthers, 0);
@@ -325,12 +327,7 @@ static void upgradeAudioSessionCategory(AVAudioSessionCategory requestedCategory
 - (void)setAllowBackgroundPlayback:(BOOL)allowBackgroundPlayback 
                             error:(FlutterError **)error {
 #if TARGET_OS_IOS
-  if (allowBackgroundPlayback) {
-    upgradeAudioSessionCategory(AVAudioSessionCategoryPlayback, 
-                               AVAudioSessionCategoryOptionMixWithOthers, 0);
-  } else {
-    upgradeAudioSessionCategory(AVAudioSession.sharedInstance.category, 0, 0);
-  }
+  // Do nothing here, the background playback still works
 #endif
 }
 
