@@ -59,12 +59,10 @@ public abstract class VideoPlayer {
     setAudioAttributes(exoPlayer, options.mixWithOthers);
 
     if (options.allowBackgroundPlayback) {
-        exoPlayer.setWakeMode(C.WAKE_MODE_NETWORK);
-        exoPlayer.setAudioAttributes(
-            new AudioAttributes.Builder()
-                .setUsage(C.USAGE_MEDIA)
-                .build(),
-            /* handleAudioFocus= */ !options.mixWithOthers);
+      exoPlayer.setWakeMode(C.WAKE_MODE_NETWORK);
+      exoPlayer.setAudioAttributes(
+          new AudioAttributes.Builder().setUsage(C.USAGE_MEDIA).build(),
+          /* handleAudioFocus= */ !options.mixWithOthers);
     }
 
     return exoPlayer;
