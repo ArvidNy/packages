@@ -184,10 +184,11 @@ class AndroidVideoPlayer extends VideoPlayerPlatform {
 
     return switch (viewState) {
       _VideoPlayerTextureViewState(:final int textureId) => Texture(
-          textureId: textureId,
-        ),
+        textureId: textureId,
+      ),
       _VideoPlayerPlatformViewState() => PlatformViewPlayer(playerId: playerId),
-      null => throw Exception(
+      null =>
+        throw Exception(
           'Could not find corresponding view type for playerId: $playerId',
         ),
     };
