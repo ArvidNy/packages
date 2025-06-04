@@ -532,18 +532,19 @@ abstract class TestHostVideoPlayerApi {
       }
     }
     {
-      final BasicMessageChannel<Object?> 
+      final BasicMessageChannel<Object?>
       pigeonVar_channel = BasicMessageChannel<Object?>(
-          'dev.flutter.pigeon.video_player_android.AndroidVideoPlayerApi.setAllowBackgroundPlayback$messageChannelSuffix',
-          pigeonChannelCodec,
-          binaryMessenger: binaryMessenger);
+        'dev.flutter.pigeon.video_player_android.AndroidVideoPlayerApi.setAllowBackgroundPlayback',
+        pigeonChannelCodec,
+        binaryMessenger: binaryMessenger,
+      );
       if (api == null) {
         _testBinaryMessengerBinding!.defaultBinaryMessenger
             .setMockDecodedMessageHandler<Object?>(pigeonVar_channel, null);
       } else {
         _testBinaryMessengerBinding!.defaultBinaryMessenger
-            .setMockDecodedMessageHandler<Object?>(pigeonVar_channel,
-                (Object? message,
+            .setMockDecodedMessageHandler<Object?>(pigeonVar_channel, (
+              Object? message,
             ) async {
               assert(
                 message != null,
@@ -562,13 +563,13 @@ abstract class TestHostVideoPlayerApi {
                 return wrapResponse(error: e);
               } catch (e) {
                 return wrapResponse(
-                    error: PlatformException(
-                      code: 'error', 
-                      message: e.toString(),
-                      ),
-                    );
+                  error: PlatformException(
+                    code: 'error',
+                    message: e.toString(),
+                  ),
+                );
               }
-        });
+            });
       }
     }
   }
