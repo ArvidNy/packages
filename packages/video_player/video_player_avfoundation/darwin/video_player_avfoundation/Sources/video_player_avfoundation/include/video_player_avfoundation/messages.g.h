@@ -80,8 +80,6 @@ NSObject<FlutterMessageCodec> *FVPGetMessagesCodec(void);
     completion:(void (^)(FlutterError *_Nullable))completion;
 - (void)pausePlayer:(NSInteger)playerId error:(FlutterError *_Nullable *_Nonnull)error;
 - (void)setMixWithOthers:(BOOL)mixWithOthers error:(FlutterError *_Nullable *_Nonnull)error;
-- (void)setAllowBackgroundPlayback:(BOOL)allowBackgroundPlayback
-                             error:(FlutterError *_Nullable *_Nonnull)error;
 @end
 
 extern void SetUpFVPAVFoundationVideoPlayerApi(

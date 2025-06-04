@@ -180,9 +180,7 @@ class AVFoundationVideoPlayer extends VideoPlayerPlatform {
   }
 
   @override
-  Future<void> setAllowBackgroundPlayback(bool allowBackgroundPlayback) {
-    return _api.setAllowBackgroundPlayback(allowBackgroundPlayback);
-  }
+  Future<void> setAllowBackgroundPlayback(bool allowBackgroundPlayback) async {}
 
   @override
   Widget buildView(int playerId) {

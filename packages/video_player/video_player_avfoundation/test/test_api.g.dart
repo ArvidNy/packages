@@ -77,8 +77,6 @@ abstract class TestHostVideoPlayerApi {
 
   void setMixWithOthers(bool mixWithOthers);
 
-  void setAllowBackgroundPlayback(bool allowBackgroundPlayback);
-
   static void setUp(
     TestHostVideoPlayerApi? api, {
     BinaryMessenger? binaryMessenger,
@@ -435,38 +433,6 @@ abstract class TestHostVideoPlayerApi {
               'Argument for dev.flutter.pigeon.video_player_avfoundation.AVFoundationVideoPlayerApi.setMixWithOthers was null, expected non-null bool.');
           try {
             api.setMixWithOthers(arg_mixWithOthers!);
-            return wrapResponse(empty: true);
-          } on PlatformException catch (e) {
-            return wrapResponse(error: e);
-          } catch (e) {
-            return wrapResponse(
-                error: PlatformException(code: 'error', message: e.toString()));
-          }
-        });
-      }
-    }
-    {
-      final BasicMessageChannel<
-          Object?> pigeonVar_channel = BasicMessageChannel<
-              Object?>(
-          'dev.flutter.pigeon.video_player_avfoundation.AVFoundationVideoPlayerApi.setAllowBackgroundPlayback$messageChannelSuffix',
-          pigeonChannelCodec,
-          binaryMessenger: binaryMessenger);
-      if (api == null) {
-        _testBinaryMessengerBinding!.defaultBinaryMessenger
-            .setMockDecodedMessageHandler<Object?>(pigeonVar_channel, null);
-      } else {
-        _testBinaryMessengerBinding!.defaultBinaryMessenger
-            .setMockDecodedMessageHandler<Object?>(pigeonVar_channel,
-                (Object? message) async {
-          assert(message != null,
-              'Argument for dev.flutter.pigeon.video_player_avfoundation.AVFoundationVideoPlayerApi.setAllowBackgroundPlayback was null.');
-          final List<Object?> args = (message as List<Object?>?)!;
-          final bool? arg_allowBackgroundPlayback = (args[0] as bool?);
-          assert(arg_allowBackgroundPlayback != null,
-              'Argument for dev.flutter.pigeon.video_player_avfoundation.AVFoundationVideoPlayerApi.setAllowBackgroundPlayback was null, expected non-null bool.');
-          try {
-            api.setAllowBackgroundPlayback(arg_allowBackgroundPlayback!);
             return wrapResponse(empty: true);
           } on PlatformException catch (e) {
             return wrapResponse(error: e);
