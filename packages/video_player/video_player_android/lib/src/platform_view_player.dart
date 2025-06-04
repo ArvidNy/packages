@@ -40,14 +40,14 @@ class PlatformViewPlayer extends StatelessWidget {
         },
         onCreatePlatformView: (PlatformViewCreationParams params) {
           return PlatformViewsService.initSurfaceAndroidView(
-            id: params.id,
-            viewType: viewType,
-            layoutDirection:
-                Directionality.maybeOf(context) ?? TextDirection.ltr,
-            creationParams: creationParams,
-            creationParamsCodec: AndroidVideoPlayerApi.pigeonChannelCodec,
-            onFocus: () => params.onFocusChanged(true),
-          )
+              id: params.id,
+              viewType: viewType,
+              layoutDirection:
+                  Directionality.maybeOf(context) ?? TextDirection.ltr,
+              creationParams: creationParams,
+              creationParamsCodec: AndroidVideoPlayerApi.pigeonChannelCodec,
+              onFocus: () => params.onFocusChanged(true),
+            )
             ..addOnPlatformViewCreatedListener(params.onPlatformViewCreated)
             ..create();
         },
