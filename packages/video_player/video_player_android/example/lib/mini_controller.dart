@@ -7,7 +7,6 @@
 
 import 'dart:async';
 import 'dart:io';
-import 'dart:math';
 
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
@@ -50,9 +49,10 @@ class VideoPlayerValue {
   /// Returns an instance with the given [errorDescription].
   const VideoPlayerValue.erroneous(String errorDescription)
       : this(
-            duration: Duration.zero,
-            isInitialized: false,
-            errorDescription: errorDescription);
+          duration: Duration.zero,
+          isInitialized: false,
+          errorDescription: errorDescription,
+        );
 
   /// The total duration of the video.
   ///
@@ -193,10 +193,8 @@ class MiniController extends ValueNotifier<VideoPlayerValue> {
         super(const VideoPlayerValue(duration: Duration.zero));
 
   /// Constructs a [MiniController] playing a video from obtained from a file.
-  MiniController.file(
-    File file, {
-    this.viewType = VideoViewType.textureView,
-  })  : dataSource = Uri.file(file.absolute.path).toString(),
+  MiniController.file(File file, {this.viewType = VideoViewType.textureView})
+      : dataSource = Uri.file(file.absolute.path).toString(),
         dataSourceType = DataSourceType.file,
         package = null,
         super(const VideoPlayerValue(duration: Duration.zero));
@@ -339,16 +337,15 @@ class MiniController extends ValueNotifier<VideoPlayerValue> {
     if (value.isPlaying) {
       await _platform.play(_playerId);
 
-      _timer = Timer.periodic(
-        const Duration(milliseconds: 500),
-        (Timer timer) async {
-          final Duration? newPosition = await position;
-          if (newPosition == null) {
-            return;
-          }
-          _updatePosition(newPosition);
-        },
-      );
+      _timer = Timer.periodic(const Duration(milliseconds: 500), (
+        Timer timer,
+      ) async {
+        final Duration? newPosition = await position;
+        if (newPosition == null) {
+          return;
+        }
+        _updatePosition(newPosition);
+      });
       await _applyPlaybackSpeed();
     } else {
       await _platform.pause(_playerId);
@@ -357,10 +354,7 @@ class MiniController extends ValueNotifier<VideoPlayerValue> {
 
   Future<void> _applyPlaybackSpeed() async {
     if (value.isPlaying) {
-      await _platform.setPlaybackSpeed(
-        _playerId,
-        value.playbackSpeed,
-      );
+      await _platform.setPlaybackSpeed(_playerId, value.playbackSpeed);
     }
   }
 
@@ -457,30 +451,22 @@ class _VideoPlayerState extends State<VideoPlayer> {
 }
 
 class _VideoPlayerWithRotation extends StatelessWidget {
-  const _VideoPlayerWithRotation({
-    required this.rotation,
-    required this.child,
-  });
+  const _VideoPlayerWithRotation({required this.rotation, required this.child});
 
   final int rotation;
   final Widget child;
 
   @override
   Widget build(BuildContext context) {
-    return rotation == 0
-        ? child
-        : Transform.rotate(
-            angle: rotation * pi / 180,
-            child: child,
-          );
+    if (rotation == 0) {
+      return child;
+    }
+    return RotatedBox(quarterTurns: rotation ~/ 90, child: child);
   }
 }
 
 class _VideoScrubber extends StatefulWidget {
-  const _VideoScrubber({
-    required this.child,
-    required this.controller,
-  });
+  const _VideoScrubber({required this.child, required this.controller});
 
   final Widget child;
   final MiniController controller;

@@ -9,7 +9,7 @@ import XCTest
 
 // Import Objectice-C part of the implementation when SwiftPM is used.
 #if canImport(camera_avfoundation_objc)
-  @testable import camera_avfoundation_objc
+  import camera_avfoundation_objc
 #endif
 
 /// Includes test cases related to resolution presets setting operations for FLTCam class.
@@ -43,7 +43,7 @@ final class CameraSessionPresetsTests: XCTestCase {
     configuration.mediaSettings = CameraTestUtils.createDefaultMediaSettings(
       resolutionPreset: FCPPlatformResolutionPreset.max)
 
-    let _ = FLTCam(configuration: configuration, error: nil)
+    let _ = CameraTestUtils.createTestCamera(configuration)
 
     waitForExpectations(timeout: 30, handler: nil)
   }
@@ -67,7 +67,7 @@ final class CameraSessionPresetsTests: XCTestCase {
       resolutionPreset: FCPPlatformResolutionPreset.max)
     configuration.captureDeviceFactory = { _ in MockCaptureDevice() }
 
-    let _ = FLTCam(configuration: configuration, error: nil)
+    let _ = CameraTestUtils.createTestCamera(configuration)
 
     waitForExpectations(timeout: 30, handler: nil)
   }
@@ -91,7 +91,7 @@ final class CameraSessionPresetsTests: XCTestCase {
     configuration.mediaSettings = CameraTestUtils.createDefaultMediaSettings(
       resolutionPreset: FCPPlatformResolutionPreset.ultraHigh)
 
-    let _ = FLTCam(configuration: configuration, error: nil)
+    let _ = CameraTestUtils.createTestCamera(configuration)
 
     waitForExpectations(timeout: 30, handler: nil)
   }

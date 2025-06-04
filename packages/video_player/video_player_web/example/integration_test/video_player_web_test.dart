@@ -169,14 +169,6 @@ void main() {
       expect(VideoPlayerPlatform.instance.setMixWithOthers(false), completes);
     });
 
-    testWidgets('ignores setting allowBackgroundPlayback',
-        (WidgetTester tester) async {
-      expect(VideoPlayerPlatform.instance.setAllowBackgroundPlayback(true),
-          completes);
-      expect(VideoPlayerPlatform.instance.setAllowBackgroundPlayback(false),
-          completes);
-    });
-
     testWidgets(
         'double call to play will emit a single isPlayingStateUpdate event',
         (WidgetTester tester) async {
@@ -209,7 +201,9 @@ void main() {
               isPlaying: true,
             )
           ]));
-    });
+    },
+        // MEDIA_ELEMENT_ERROR, see https://github.com/flutter/flutter/issues/169219
+        skip: true);
 
     testWidgets('video playback lifecycle', (WidgetTester tester) async {
       final int videoPlayerId = await playerId;
@@ -246,7 +240,9 @@ void main() {
             VideoEventType.initialized,
             VideoEventType.bufferingEnd,
           ]));
-    });
+    },
+        // MEDIA_ELEMENT_ERROR, see https://github.com/flutter/flutter/issues/169219
+        skip: true);
 
     testWidgets('can set web options', (WidgetTester tester) async {
       expect(

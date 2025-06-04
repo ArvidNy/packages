@@ -10,7 +10,7 @@ import XCTest
 
 // Import Objectice-C part of the implementation when SwiftPM is used.
 #if canImport(camera_avfoundation_objc)
-  @testable import camera_avfoundation_objc
+  import camera_avfoundation_objc
 #endif
 
 private final class MockUIDevice: UIDevice {
@@ -24,14 +24,14 @@ private final class MockUIDevice: UIDevice {
 final class CameraOrientationTests: XCTestCase {
   private func createCameraPlugin() -> (
     cameraPlugin: CameraPlugin,
-    mockCamera: MockFLTCam,
+    mockCamera: MockCamera,
     mockEventAPI: MockGlobalEventApi,
     mockDevice: MockCaptureDevice,
     mockDeviceDiscoverer: MockCameraDeviceDiscoverer,
     captureSessionQueue: DispatchQueue
   ) {
     let mockDevice = MockCaptureDevice()
-    let mockCamera = MockFLTCam()
+    let mockCamera = MockCamera()
     let mockEventAPI = MockGlobalEventApi()
     let mockDeviceDiscoverer = MockCameraDeviceDiscoverer()
     let captureSessionQueue = DispatchQueue(label: "io.flutter.camera.captureSessionQueue")
@@ -59,23 +59,13 @@ final class CameraOrientationTests: XCTestCase {
     )
   }
 
-  private func waitForRoundTrip(with queue: DispatchQueue) {
-    let expectation = self.expectation(description: "Queue flush")
-    queue.async {
-      DispatchQueue.main.async {
-        expectation.fulfill()
-      }
-    }
-    waitForExpectations(timeout: 30, handler: nil)
-  }
-
   private func sendOrientation(
     _ orientation: UIDeviceOrientation,
     to cameraPlugin: CameraPlugin,
     captureSessionQueue: DispatchQueue
   ) {
     cameraPlugin.orientationChanged(createMockNotification(for: orientation))
-    waitForRoundTrip(with: captureSessionQueue)
+    waitForQueueRoundTrip(with: captureSessionQueue)
   }
 
   private func createMockNotification(for deviceOrientation: UIDeviceOrientation) -> Notification {

@@ -9,7 +9,7 @@ import XCTest
 
 // Import Objectice-C part of the implementation when SwiftPM is used.
 #if canImport(camera_avfoundation_objc)
-  @testable import camera_avfoundation_objc
+  import camera_avfoundation_objc
 #endif
 
 private let testResolutionPreset = FCPPlatformResolutionPreset.medium
@@ -126,7 +126,7 @@ final class CameraSettingsTests: XCTestCase {
     let configuration = CameraTestUtils.createTestCameraConfiguration()
     configuration.mediaSettingsWrapper = injectedWrapper
     configuration.mediaSettings = settings
-    let camera = FLTCam(configuration: configuration, error: nil)
+    let camera = CameraTestUtils.createTestCamera(configuration)
 
     // Expect FPS configuration is passed to camera device.
     wait(
@@ -200,7 +200,7 @@ final class CameraSettingsTests: XCTestCase {
 
     let configuration = CameraTestUtils.createTestCameraConfiguration()
     configuration.mediaSettings = settings
-    let camera = FLTCam(configuration: configuration, error: nil)
+    let camera = CameraTestUtils.createTestCamera(configuration)
 
     let range = camera.captureDevice.activeFormat.videoSupportedFrameRateRanges[0]
     XCTAssertLessThanOrEqual(range.minFrameRate, 60)

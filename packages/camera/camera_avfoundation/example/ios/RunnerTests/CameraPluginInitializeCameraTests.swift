@@ -8,14 +8,14 @@ import XCTest
 
 // Import Objectice-C part of the implementation when SwiftPM is used.
 #if canImport(camera_avfoundation_objc)
-  @testable import camera_avfoundation_objc
+  import camera_avfoundation_objc
 #endif
 
 final class CameraPluginInitializeCameraTests: XCTestCase {
   private func createCameraPlugin() -> (
-    CameraPlugin, MockFLTCam, MockGlobalEventApi, DispatchQueue
+    CameraPlugin, MockCamera, MockGlobalEventApi, DispatchQueue
   ) {
-    let mockCamera = MockFLTCam()
+    let mockCamera = MockCamera()
     let mockGlobalEventApi = MockGlobalEventApi()
     let captureSessionQueue = DispatchQueue(label: "io.flutter.camera.captureSessionQueue")
 
@@ -33,16 +33,6 @@ final class CameraPluginInitializeCameraTests: XCTestCase {
     cameraPlugin.camera = mockCamera
 
     return (cameraPlugin, mockCamera, mockGlobalEventApi, captureSessionQueue)
-  }
-
-  private func waitForRoundTrip(with queue: DispatchQueue) {
-    let expectation = self.expectation(description: "Queue flush")
-    queue.async {
-      DispatchQueue.main.async {
-        expectation.fulfill()
-      }
-    }
-    waitForExpectations(timeout: 30, handler: nil)
   }
 
   func testInitializeCamera_setsCameraOnFrameAvailableCallback() {
@@ -93,7 +83,7 @@ final class CameraPluginInitializeCameraTests: XCTestCase {
       XCTAssertNil(error)
     }
 
-    waitForRoundTrip(with: captureSessionQueue)
+    waitForQueueRoundTrip(with: captureSessionQueue)
 
     XCTAssertTrue(mockGlobalEventApi.deviceOrientationChangedCalled)
   }

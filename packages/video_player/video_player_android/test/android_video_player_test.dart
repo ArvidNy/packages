@@ -174,18 +174,17 @@ void main() {
       expect(log.passedCreateMessage?.uri, 'someUri');
       expect(log.passedCreateMessage?.packageName, null);
       expect(log.passedCreateMessage?.formatHint, null);
-      expect(log.passedCreateMessage?.httpHeaders,
-          <String, String>{'Authorization': 'Bearer token'});
+      expect(log.passedCreateMessage?.httpHeaders, <String, String>{
+        'Authorization': 'Bearer token',
+      });
       expect(playerId, 3);
       expect(player.buildViewWithOptions(VideoViewOptions(playerId: playerId!)),
           isA<Texture>());
     });
 
     test('create with file', () async {
-      final int? playerId = await player.create(DataSource(
-        sourceType: DataSourceType.file,
-        uri: 'someUri',
-      ));
+      final int? playerId = await player
+          .create(DataSource(sourceType: DataSourceType.file, uri: 'someUri'));
       expect(log.log.last, 'create');
       expect(log.passedCreateMessage?.uri, 'someUri');
       expect(playerId, 3);
@@ -201,24 +200,23 @@ void main() {
       ));
       expect(log.log.last, 'create');
       expect(log.passedCreateMessage?.uri, 'someUri');
-      expect(log.passedCreateMessage?.httpHeaders,
-          <String, String>{'Authorization': 'Bearer token'});
+      expect(log.passedCreateMessage?.httpHeaders, <String, String>{
+        'Authorization': 'Bearer token',
+      });
       expect(playerId, 3);
       expect(player.buildViewWithOptions(VideoViewOptions(playerId: playerId!)),
           isA<Texture>());
     });
 
     test('createWithOptions with asset', () async {
-      final int? playerId = await player.createWithOptions(
-        VideoCreationOptions(
-          dataSource: DataSource(
-            sourceType: DataSourceType.asset,
-            asset: 'someAsset',
-            package: 'somePackage',
-          ),
-          viewType: VideoViewType.textureView,
+      final int? playerId = await player.createWithOptions(VideoCreationOptions(
+        dataSource: DataSource(
+          sourceType: DataSourceType.asset,
+          asset: 'someAsset',
+          package: 'somePackage',
         ),
-      );
+        viewType: VideoViewType.textureView,
+      ));
       expect(log.log.last, 'create');
       expect(log.passedCreateMessage?.asset, 'someAsset');
       expect(log.passedCreateMessage?.packageName, 'somePackage');
@@ -228,16 +226,14 @@ void main() {
     });
 
     test('createWithOptions with network', () async {
-      final int? playerId = await player.createWithOptions(
-        VideoCreationOptions(
-          dataSource: DataSource(
-            sourceType: DataSourceType.network,
-            uri: 'someUri',
-            formatHint: VideoFormat.dash,
-          ),
-          viewType: VideoViewType.textureView,
+      final int? playerId = await player.createWithOptions(VideoCreationOptions(
+        dataSource: DataSource(
+          sourceType: DataSourceType.network,
+          uri: 'someUri',
+          formatHint: VideoFormat.dash,
         ),
-      );
+        viewType: VideoViewType.textureView,
+      ));
       expect(log.log.last, 'create');
       expect(log.passedCreateMessage?.asset, null);
       expect(log.passedCreateMessage?.uri, 'someUri');
@@ -250,38 +246,35 @@ void main() {
     });
 
     test('createWithOptions with network (some headers)', () async {
-      final int? playerId = await player.createWithOptions(
-        VideoCreationOptions(
-          dataSource: DataSource(
-            sourceType: DataSourceType.network,
-            uri: 'someUri',
-            httpHeaders: <String, String>{'Authorization': 'Bearer token'},
-          ),
-          viewType: VideoViewType.textureView,
+      final int? playerId = await player.createWithOptions(VideoCreationOptions(
+        dataSource: DataSource(
+          sourceType: DataSourceType.network,
+          uri: 'someUri',
+          httpHeaders: <String, String>{'Authorization': 'Bearer token'},
         ),
-      );
+        viewType: VideoViewType.textureView,
+      ));
       expect(log.log.last, 'create');
       expect(log.passedCreateMessage?.asset, null);
       expect(log.passedCreateMessage?.uri, 'someUri');
       expect(log.passedCreateMessage?.packageName, null);
       expect(log.passedCreateMessage?.formatHint, null);
-      expect(log.passedCreateMessage?.httpHeaders,
-          <String, String>{'Authorization': 'Bearer token'});
+      expect(log.passedCreateMessage?.httpHeaders, <String, String>{
+        'Authorization': 'Bearer token',
+      });
       expect(playerId, 3);
       expect(player.buildViewWithOptions(VideoViewOptions(playerId: playerId!)),
           isA<Texture>());
     });
 
     test('createWithOptions with file', () async {
-      final int? playerId = await player.createWithOptions(
-        VideoCreationOptions(
-          dataSource: DataSource(
-            sourceType: DataSourceType.file,
-            uri: 'someUri',
-          ),
-          viewType: VideoViewType.textureView,
+      final int? playerId = await player.createWithOptions(VideoCreationOptions(
+        dataSource: DataSource(
+          sourceType: DataSourceType.file,
+          uri: 'someUri',
         ),
-      );
+        viewType: VideoViewType.textureView,
+      ));
       expect(log.log.last, 'create');
       expect(log.passedCreateMessage?.uri, 'someUri');
       expect(playerId, 3);
@@ -290,38 +283,37 @@ void main() {
     });
 
     test('createWithOptions with file (some headers)', () async {
-      final int? playerId = await player.createWithOptions(
-        VideoCreationOptions(
-          dataSource: DataSource(
-            sourceType: DataSourceType.file,
-            uri: 'someUri',
-            httpHeaders: <String, String>{'Authorization': 'Bearer token'},
-          ),
-          viewType: VideoViewType.textureView,
+      final int? playerId = await player.createWithOptions(VideoCreationOptions(
+        dataSource: DataSource(
+          sourceType: DataSourceType.file,
+          uri: 'someUri',
+          httpHeaders: <String, String>{'Authorization': 'Bearer token'},
         ),
-      );
+        viewType: VideoViewType.textureView,
+      ));
       expect(log.log.last, 'create');
       expect(log.passedCreateMessage?.uri, 'someUri');
-      expect(log.passedCreateMessage?.httpHeaders,
-          <String, String>{'Authorization': 'Bearer token'});
+      expect(log.passedCreateMessage?.httpHeaders, <String, String>{
+        'Authorization': 'Bearer token',
+      });
       expect(playerId, 3);
       expect(player.buildViewWithOptions(VideoViewOptions(playerId: playerId!)),
           isA<Texture>());
     });
 
     test('createWithOptions with platform view', () async {
-      final int? playerId = await player.createWithOptions(
-        VideoCreationOptions(
-          dataSource: DataSource(
-            sourceType: DataSourceType.file,
-            uri: 'someUri',
-          ),
-          viewType: VideoViewType.platformView,
+      final int? playerId = await player.createWithOptions(VideoCreationOptions(
+        dataSource: DataSource(
+          sourceType: DataSourceType.file,
+          uri: 'someUri',
         ),
-      );
+        viewType: VideoViewType.platformView,
+      ));
       expect(log.log.last, 'create');
-      expect(log.passedCreateMessage?.viewType,
-          PlatformVideoViewType.platformView);
+      expect(
+        log.passedCreateMessage?.viewType,
+        PlatformVideoViewType.platformView,
+      );
       expect(playerId, 3);
       expect(player.buildViewWithOptions(VideoViewOptions(playerId: playerId!)),
           isA<PlatformViewPlayer>());
@@ -397,113 +389,116 @@ void main() {
     test('videoEventsFor', () async {
       const String mockChannel = 'flutter.io/videoPlayer/videoEvents123';
       TestDefaultBinaryMessengerBinding.instance.defaultBinaryMessenger
-          .setMockMessageHandler(
-        mockChannel,
-        (ByteData? message) async {
-          final MethodCall methodCall =
-              const StandardMethodCodec().decodeMethodCall(message);
-          if (methodCall.method == 'listen') {
-            await TestDefaultBinaryMessengerBinding
-                .instance.defaultBinaryMessenger
-                .handlePlatformMessage(
-                    mockChannel,
-                    const StandardMethodCodec()
-                        .encodeSuccessEnvelope(<String, dynamic>{
-                      'event': 'initialized',
-                      'duration': 98765,
-                      'width': 1920,
-                      'height': 1080,
-                    }),
-                    (ByteData? data) {});
+          .setMockMessageHandler(mockChannel, (ByteData? message) async {
+        final MethodCall methodCall =
+            const StandardMethodCodec().decodeMethodCall(message);
+        if (methodCall.method == 'listen') {
+          await TestDefaultBinaryMessengerBinding
+              .instance.defaultBinaryMessenger
+              .handlePlatformMessage(
+            mockChannel,
+            const StandardMethodCodec().encodeSuccessEnvelope(<String, dynamic>{
+              'event': 'initialized',
+              'duration': 98765,
+              'width': 1920,
+              'height': 1080,
+            }),
+            (ByteData? data) {},
+          );
 
-            await TestDefaultBinaryMessengerBinding
-                .instance.defaultBinaryMessenger
-                .handlePlatformMessage(
-                    mockChannel,
-                    const StandardMethodCodec()
-                        .encodeSuccessEnvelope(<String, dynamic>{
-                      'event': 'initialized',
-                      'duration': 98765,
-                      'width': 1920,
-                      'height': 1080,
-                      'rotationCorrection': 180,
-                    }),
-                    (ByteData? data) {});
+          await TestDefaultBinaryMessengerBinding
+              .instance.defaultBinaryMessenger
+              .handlePlatformMessage(
+            mockChannel,
+            const StandardMethodCodec().encodeSuccessEnvelope(<String, dynamic>{
+              'event': 'initialized',
+              'duration': 98765,
+              'width': 1920,
+              'height': 1080,
+              'rotationCorrection': 180,
+            }),
+            (ByteData? data) {},
+          );
 
-            await TestDefaultBinaryMessengerBinding
-                .instance.defaultBinaryMessenger
-                .handlePlatformMessage(
-                    mockChannel,
-                    const StandardMethodCodec()
-                        .encodeSuccessEnvelope(<String, dynamic>{
-                      'event': 'completed',
-                    }),
-                    (ByteData? data) {});
+          await TestDefaultBinaryMessengerBinding
+              .instance.defaultBinaryMessenger
+              .handlePlatformMessage(
+            mockChannel,
+            const StandardMethodCodec().encodeSuccessEnvelope(
+              <String, dynamic>{'event': 'completed'},
+            ),
+            (ByteData? data) {},
+          );
 
-            await TestDefaultBinaryMessengerBinding
-                .instance.defaultBinaryMessenger
-                .handlePlatformMessage(
-                    mockChannel,
-                    const StandardMethodCodec()
-                        .encodeSuccessEnvelope(<String, dynamic>{
-                      'event': 'bufferingUpdate',
-                      'values': <List<dynamic>>[
-                        <int>[0, 1234],
-                        <int>[1235, 4000],
-                      ],
-                    }),
-                    (ByteData? data) {});
+          await TestDefaultBinaryMessengerBinding
+              .instance.defaultBinaryMessenger
+              .handlePlatformMessage(
+            mockChannel,
+            const StandardMethodCodec().encodeSuccessEnvelope(
+              <String, dynamic>{
+                'event': 'bufferingUpdate',
+                'values': <List<dynamic>>[
+                  <int>[0, 1234],
+                  <int>[1235, 4000],
+                ],
+              },
+            ),
+            (ByteData? data) {},
+          );
 
-            await TestDefaultBinaryMessengerBinding
-                .instance.defaultBinaryMessenger
-                .handlePlatformMessage(
-                    mockChannel,
-                    const StandardMethodCodec()
-                        .encodeSuccessEnvelope(<String, dynamic>{
-                      'event': 'bufferingStart',
-                    }),
-                    (ByteData? data) {});
+          await TestDefaultBinaryMessengerBinding
+              .instance.defaultBinaryMessenger
+              .handlePlatformMessage(
+            mockChannel,
+            const StandardMethodCodec().encodeSuccessEnvelope(
+              <String, dynamic>{'event': 'bufferingStart'},
+            ),
+            (ByteData? data) {},
+          );
 
-            await TestDefaultBinaryMessengerBinding
-                .instance.defaultBinaryMessenger
-                .handlePlatformMessage(
-                    mockChannel,
-                    const StandardMethodCodec()
-                        .encodeSuccessEnvelope(<String, dynamic>{
-                      'event': 'bufferingEnd',
-                    }),
-                    (ByteData? data) {});
+          await TestDefaultBinaryMessengerBinding
+              .instance.defaultBinaryMessenger
+              .handlePlatformMessage(
+            mockChannel,
+            const StandardMethodCodec().encodeSuccessEnvelope(
+              <String, dynamic>{'event': 'bufferingEnd'},
+            ),
+            (ByteData? data) {},
+          );
 
-            await TestDefaultBinaryMessengerBinding
-                .instance.defaultBinaryMessenger
-                .handlePlatformMessage(
-                    mockChannel,
-                    const StandardMethodCodec()
-                        .encodeSuccessEnvelope(<String, dynamic>{
-                      'event': 'isPlayingStateUpdate',
-                      'isPlaying': true,
-                    }),
-                    (ByteData? data) {});
+          await TestDefaultBinaryMessengerBinding
+              .instance.defaultBinaryMessenger
+              .handlePlatformMessage(
+            mockChannel,
+            const StandardMethodCodec().encodeSuccessEnvelope(
+              <String, dynamic>{
+                'event': 'isPlayingStateUpdate',
+                'isPlaying': true,
+              },
+            ),
+            (ByteData? data) {},
+          );
 
-            await TestDefaultBinaryMessengerBinding
-                .instance.defaultBinaryMessenger
-                .handlePlatformMessage(
-                    mockChannel,
-                    const StandardMethodCodec()
-                        .encodeSuccessEnvelope(<String, dynamic>{
-                      'event': 'isPlayingStateUpdate',
-                      'isPlaying': false,
-                    }),
-                    (ByteData? data) {});
+          await TestDefaultBinaryMessengerBinding
+              .instance.defaultBinaryMessenger
+              .handlePlatformMessage(
+            mockChannel,
+            const StandardMethodCodec().encodeSuccessEnvelope(
+              <String, dynamic>{
+                'event': 'isPlayingStateUpdate',
+                'isPlaying': false,
+              },
+            ),
+            (ByteData? data) {},
+          );
 
-            return const StandardMethodCodec().encodeSuccessEnvelope(null);
-          } else if (methodCall.method == 'cancel') {
-            return const StandardMethodCodec().encodeSuccessEnvelope(null);
-          } else {
-            fail('Expected listen or cancel');
-          }
-        },
-      );
+          return const StandardMethodCodec().encodeSuccessEnvelope(null);
+        } else if (methodCall.method == 'cancel') {
+          return const StandardMethodCodec().encodeSuccessEnvelope(null);
+        } else {
+          fail('Expected listen or cancel');
+        }
+      });
       expect(
           player.videoEventsFor(123),
           emitsInOrder(<dynamic>[
@@ -521,17 +516,14 @@ void main() {
             ),
             VideoEvent(eventType: VideoEventType.completed),
             VideoEvent(
-                eventType: VideoEventType.bufferingUpdate,
-                buffered: <DurationRange>[
-                  DurationRange(
-                    Duration.zero,
-                    const Duration(milliseconds: 1234),
-                  ),
-                  DurationRange(
-                    const Duration(milliseconds: 1235),
-                    const Duration(milliseconds: 4000),
-                  ),
-                ]),
+              eventType: VideoEventType.bufferingUpdate,
+              buffered: <DurationRange>[
+                DurationRange(
+                    Duration.zero, const Duration(milliseconds: 1234)),
+                DurationRange(const Duration(milliseconds: 1235),
+                    const Duration(milliseconds: 4000)),
+              ],
+            ),
             VideoEvent(eventType: VideoEventType.bufferingStart),
             VideoEvent(eventType: VideoEventType.bufferingEnd),
             VideoEvent(

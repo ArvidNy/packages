@@ -1,5 +1,6 @@
-## 2.4.0
+## NEXT
 
+* Updates minimum supported SDK version to Flutter 3.27/Dart 3.6.
 * Implements background playback functionality using allowBackgroundPlayback option.
 
 ## 2.3.5

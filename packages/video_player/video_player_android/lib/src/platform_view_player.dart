@@ -13,10 +13,7 @@ import 'messages.g.dart';
 /// A widget that displays a video player using a platform view.
 class PlatformViewPlayer extends StatelessWidget {
   /// Creates a new instance of [PlatformViewPlayer].
-  const PlatformViewPlayer({
-    super.key,
-    required this.playerId,
-  });
+  const PlatformViewPlayer({super.key, required this.playerId});
 
   /// The ID of the player.
   final int playerId;
